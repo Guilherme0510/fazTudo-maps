@@ -3,7 +3,6 @@ import {
   Phone,
   MapPin,
   Star,
-  CheckCircle,
   Clock,
   Users,
   Award,
@@ -11,7 +10,8 @@ import {
   Thermometer,
   Wrench,
   MessageCircle,
-  Mail
+  Mail,
+  Paintbrush,
 } from "lucide-react";
 
 function App() {
@@ -35,10 +35,10 @@ function App() {
         "Limpeza profunda e higienização completa para manter a qualidade do ar.",
     },
     {
-      icon: <CheckCircle className="w-8 h-8 text-orange-500" />,
-      title: "Conserto e Reparo",
+      icon: <Paintbrush className="w-8 h-8 text-orange-500" />,
+      title: "Reparos em Gesso e Pintura",
       description:
-        "Diagnóstico e reparo de problemas em sistemas de ar condicionado de todas as marcas.",
+        "Correção de cortes no gesso e paredes com acabamento fino e pintura para restaurar o visual original do ambiente.",
     },
   ];
 
@@ -198,18 +198,33 @@ function App() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl border-t-4 border-orange-500 transition-all hover:-translate-y-5"
-              >
-                <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
-            ))}
+            {services.map((service, index) => {
+  const isGesso = service.title === "Reparos em Gesso e Pintura";
+
+  return (
+    <div
+      key={index}
+      className={`p-6 rounded-lg transition-all hover:-translate-y-5 ${
+        isGesso
+          ? "bg-orange-100 border-t-4 border-orange-600 shadow-xl ring-2 ring-orange-300"
+          : "bg-white border-t-4 border-orange-500 shadow-lg hover:shadow-xl"
+      }`}
+    >
+      <div className="mb-4">{service.icon}</div>
+      <h3
+        className={`text-xl font-semibold mb-3 ${
+          isGesso ? "text-orange-700" : "text-gray-900"
+        }`}
+      >
+        {service.title}
+      </h3>
+      <p className={`text-gray-700 ${isGesso ? "font-medium" : ""}`}>
+        {service.description}
+      </p>
+
+    </div>
+  );
+})}
           </div>
         </div>
       </section>
@@ -345,7 +360,7 @@ function App() {
                 <li>Instalação de Ar Condicionado</li>
                 <li>Manutenção Preventiva</li>
                 <li>Limpeza e Higienização</li>
-                <li>Conserto e Reparo</li>
+                <li>Reparos em Gesso e Pintura</li>
               </ul>
             </div>
             <div>

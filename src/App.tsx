@@ -11,9 +11,7 @@ import {
   Thermometer,
   Wrench,
   MessageCircle,
-  Mail,
-  Instagram,
-  Facebook,
+  Mail
 } from "lucide-react";
 
 function App() {
